@@ -15,6 +15,7 @@
 		C43551792599254800C4EF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43551772599254800C4EF30 /* LaunchScreen.storyboard */; };
 		C43551842599260100C4EF30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43551832599260100C4EF30 /* LoginViewController.swift */; };
 		C443D73A25D5D80E00774062 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443D73925D5D80E00774062 /* Session.swift */; };
+		C443D73D25D5E21D00774062 /* VkWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443D73C25D5E21D00774062 /* VkWebViewController.swift */; };
 		C445993E259F628C00CA5C28 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445993D259F628C00CA5C28 /* FriendsTableViewController.swift */; };
 		C4459942259F63FD00CA5C28 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4459941259F63FD00CA5C28 /* FriendsTableViewCell.swift */; };
 		C477B2E225A3BFA100366191 /* MyGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C477B2E125A3BFA100366191 /* MyGroupTableViewController.swift */; };
@@ -37,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		C41BDC4125C9EAAB005984F2 /* СharacterPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СharacterPicker.swift"; sourceTree = "<group>"; };
-		C43551692599254700C4EF30 /* UI_Vkontakte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UI_Vkontakte.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C43551692599254700C4EF30 /* Vkontakte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vkontakte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C435516C2599254700C4EF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C435516E2599254700C4EF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C43551732599254700C4EF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -46,6 +47,7 @@
 		C435517A2599254800C4EF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C43551832599260100C4EF30 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C443D73925D5D80E00774062 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		C443D73C25D5E21D00774062 /* VkWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkWebViewController.swift; sourceTree = "<group>"; };
 		C445993D259F628C00CA5C28 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		C4459941259F63FD00CA5C28 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		C477B2E125A3BFA100366191 /* MyGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupTableViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +90,7 @@
 		C435516A2599254700C4EF30 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C43551692599254700C4EF30 /* UI_Vkontakte.app */,
+				C43551692599254700C4EF30 /* Vkontakte.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,6 +107,7 @@
 				C4C716B625C70DD200B78112 /* FriendsViewController.swift */,
 				C435516E2599254700C4EF30 /* SceneDelegate.swift */,
 				C43551722599254700C4EF30 /* Main.storyboard */,
+				C443D73C25D5E21D00774062 /* VkWebViewController.swift */,
 				C4AE2E4725B47DA80035EC07 /* SettingsView.swift */,
 				C43551752599254800C4EF30 /* Assets.xcassets */,
 				C43551772599254800C4EF30 /* LaunchScreen.storyboard */,
@@ -194,9 +197,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C43551682599254700C4EF30 /* UI_Vkontakte */ = {
+		C43551682599254700C4EF30 /* Vkontakte */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C435517D2599254800C4EF30 /* Build configuration list for PBXNativeTarget "UI_Vkontakte" */;
+			buildConfigurationList = C435517D2599254800C4EF30 /* Build configuration list for PBXNativeTarget "Vkontakte" */;
 			buildPhases = (
 				C43551652599254700C4EF30 /* Sources */,
 				C43551662599254700C4EF30 /* Frameworks */,
@@ -206,9 +209,9 @@
 			);
 			dependencies = (
 			);
-			name = UI_Vkontakte;
+			name = Vkontakte;
 			productName = UI_Vkontakte;
-			productReference = C43551692599254700C4EF30 /* UI_Vkontakte.app */;
+			productReference = C43551692599254700C4EF30 /* Vkontakte.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -238,7 +241,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C43551682599254700C4EF30 /* UI_Vkontakte */,
+				C43551682599254700C4EF30 /* Vkontakte */,
 			);
 		};
 /* End PBXProject section */
@@ -265,6 +268,7 @@
 				C477B2F825A3C60400366191 /* StructGroup.swift in Sources */,
 				C496FBAC259F756E0008989C /* FriendCollectionViewCell.swift in Sources */,
 				C4FDE6A025B4E37100F2C448 /* LikeControl.swift in Sources */,
+				C443D73D25D5E21D00774062 /* VkWebViewController.swift in Sources */,
 				C477B2F525A3C5E600366191 /* StructFriend.swift in Sources */,
 				C4C716BB25C71A0400B78112 /* NetworkService.swift in Sources */,
 				C4901B5A25CCBA9600438840 /* NewsTableViewController.swift in Sources */,
@@ -432,13 +436,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 84PULGDZJ8;
-				INFOPLIST_FILE = UI_Vkontakte/Info.plist;
+				INFOPLIST_FILE = Vkontakte/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.podm.UI-Vkontakte";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.podm.Vkontakte;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -452,13 +456,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 84PULGDZJ8;
-				INFOPLIST_FILE = UI_Vkontakte/Info.plist;
+				INFOPLIST_FILE = Vkontakte/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.podm.UI-Vkontakte";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.podm.Vkontakte;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -477,7 +481,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C435517D2599254800C4EF30 /* Build configuration list for PBXNativeTarget "UI_Vkontakte" */ = {
+		C435517D2599254800C4EF30 /* Build configuration list for PBXNativeTarget "Vkontakte" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C435517E2599254800C4EF30 /* Debug */,

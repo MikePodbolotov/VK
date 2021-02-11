@@ -33,12 +33,16 @@ class NetworkService {
             Friend(name: "Дункан", lastName: "Маклауд", age: 46, avatar: ""),
             Friend(name: "Ольга", lastName: "Лалетина", age: 46, avatar: ""),
             Friend(name: "Марина", lastName: "Гончар", age: 36, avatar: ""),
-            Friend(name: "Павел", lastName: "Гончар", age: 27, avatar: "avatar_3")
-            
-            
-            
-            
-            
-        ]
+            Friend(name: "Павел", lastName: "Гончар", age: 27, avatar: "avatar_3")]
+    }
+    
+    static func loadGroups(token: String) {
+        let baseURL = "https://api.vk.com"
+        let path = "/method/groups.get"
+//        let params: Parameters [
+//        "access_token": token,
+//        "extended": 1,
+//        "v": "5.124"]
+        
     }
 }
