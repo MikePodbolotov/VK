@@ -6,8 +6,32 @@
 //
 
 import Foundation
+import Alamofire
 
 class NetworkService {
+    
+    private static let session: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        configuration.allowsCellularAccess = false
+        let session = URLSession(configuration: configuration)
+        
+        return session
+    }()
+    
+    private static let sessionAF: Alamofire.Session = {
+        let configuration = URLSessionConfiguration.default
+        configuration.allowsCellularAccess = false
+        let session = Alamofire.Session(configuration: configuration)
+        
+        return session
+    }()
+    
+//    static let shared = NetworkService()
+//    
+//    private init() {
+//        
+//    }
+    
     func getFriends() -> [Friend] {
         return [
             Friend(name: "Иван", lastName: "Иванов", age: 38, avatar: "avatar_1"),
@@ -39,10 +63,14 @@ class NetworkService {
     static func loadGroups(token: String) {
         let baseURL = "https://api.vk.com"
         let path = "/method/groups.get"
-//        let params: Parameters [
-//        "access_token": token,
-//        "extended": 1,
-//        "v": "5.124"]
+        let params: Parameters = [
+            "access_token": token,
+            "extended": 1,
+            "v": "5.124"]
         
+//        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseJSON { (respons) in guard let json = response.value else { return }
+//            
+//            print(json)
+//        }
     }
 }
