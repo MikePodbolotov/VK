@@ -25,6 +25,8 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         networkService = NetworkService()
         friends = networkService.getFriends()
+//        let token = Session.dataSession.token
+//        let friendsJSON = NetworkService.loadFriends(token: token)
         
         for friend in friends {
             let char = friend.lastName.prefix(1)

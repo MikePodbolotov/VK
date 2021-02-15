@@ -7,8 +7,10 @@
 
 import UIKit
 
-class AllGroupsTableViewController: UITableViewController {
+class AllGroupsTableViewController: UITableViewController, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     let groups: [String] = [
         "Moscow Never Sleep",
         "Swift",
@@ -18,9 +20,14 @@ class AllGroupsTableViewController: UITableViewController {
         "Git"
     ]
     
+    var filterGroups: [String]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
 
+        filterGroups = groups
     }
 
     // MARK: - Table view data source
@@ -32,12 +39,12 @@ class AllGroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return groups.count
+        return filterGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? AllGroupsTableViewCell {
-            cell.allGroupsLabel.text = groups[indexPath.row]
+            cell.allGroupsLabel.text = filterGroups[indexPath.row]
             return cell
         }
 
@@ -88,5 +95,21 @@ class AllGroupsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    // MARK: - Search Bar Config
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterGroups = []
+        
+        if searchText == "" {
+            filterGroups = groups
+        } else {
+            for group in groups {
+                if group.lowercased().contains(searchText.lowercased()) {
+                    filterGroups.append(group)
+                }
+            }
+        }
+        self.tableView.reloadData()
+    }
 }
