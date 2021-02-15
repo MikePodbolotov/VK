@@ -1,5 +1,5 @@
 //
-//  VkWebViewController.swift
+//  LoginVkWebViewController.swift
 //  UI_Vkontakte
 //
 //  Created by Михаил Подболотов on 12.02.2021.
@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class VkWebViewController: UIViewController {
+class LoginVkWebViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView! {
         didSet {
@@ -27,7 +27,7 @@ class VkWebViewController: UIViewController {
             URLQueryItem(name: "client_id", value: "7758916"),
             URLQueryItem(name: "scope", value: "262150"),
             URLQueryItem(name: "display", value: "mobile"),
-            URLQueryItem(name: "redirect_uri", value: "https://vk.com/blank.html"),
+            URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: "5.130")
         ]
@@ -37,7 +37,7 @@ class VkWebViewController: UIViewController {
     }
 }
 
-extension VkWebViewController: WKNavigationDelegate {
+extension LoginVkWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         guard let url = navigationResponse.response.url,
               url.path == "/blank.html",
@@ -64,6 +64,11 @@ extension VkWebViewController: WKNavigationDelegate {
         Session.dataSession.token = token
         
         NetworkService.loadGroups(token: token)
+        NetworkService.loadFriends(token: token)
+        NetworkService.loadPhotos(token: token, owner_id: "1654070")
+        NetworkService.searchGroup(token: token, query: "Туманный Альбион")
+        
         decisionHandler(.cancel)
     }
 }
+
