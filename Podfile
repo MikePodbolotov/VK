@@ -7,5 +7,6 @@ target 'Vkontakte' do
 
   # Pods for Vkontakte
   pod 'Alamofire', '~> 5.2'
+  pod 'SwiftyJSON', '~> 4.0'
 
 end

@@ -63,12 +63,13 @@ extension LoginVkWebViewController: WKNavigationDelegate {
         }
         Session.dataSession.token = token
         
-        NetworkService.loadGroups(token: token)
-        NetworkService.loadFriends(token: token)
-        NetworkService.loadPhotos(token: token, owner_id: "1654070")
-        NetworkService.searchGroup(token: token, query: "Туманный Альбион")
+//        NetworkService.loadGroups(token: token)
+//        NetworkService.loadFriends(token: token)
+//        NetworkService.loadPhotos(token: token, owner_id: "1654070")
+//        NetworkService.searchGroup(token: token, query: "Туманный Альбион")
         
         decisionHandler(.cancel)
+        performSegue(withIdentifier: "segueToMainScreen", sender: self)
     }
 }
 

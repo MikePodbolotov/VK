@@ -12,14 +12,13 @@ class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var groups: [String] = []
-    
     var filterGroups: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         searchBar.delegate = self
-
+//        groups = NetworkService.loadGroups(token: Session.dataSession.token)
         filterGroups = groups
         
     }
@@ -34,12 +33,13 @@ class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
 
-        return groups.count
+        return filterGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MyGroupTableViewCell {
-            cell.myGroupLabel.text = groups[indexPath.row]
+            cell.myGroupLabel.text = filterGroups[indexPath.row]
+
             return cell
         }
 
@@ -59,6 +59,7 @@ class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
         if editingStyle == .delete {
             // Delete the row from the data source
             groups.remove(at: indexPath.row)
+            filterGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -75,6 +76,7 @@ class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
         if groups.contains(group) { return }
         
         groups.append(group)
+        filterGroups.append(group)
         tableView.reloadData()
     }
     

@@ -17,8 +17,21 @@ class FriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        networkService = NetworkService()
-        friends = networkService.getFriends()
+//        networkService = NetworkService()
+//        friends = networkService.getFriends()
+        
+        NetworkService.shared.getFriendsWithSwiftyJSON(token: token) { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let friendsArray):
+                self.friends = friendsArray
+                
+                print(friendsArray.map { $0.lastName })
+            case .failure(let error):
+                print(error)
+            }
+        }
         
         for friend in friends {
             let char = friend.lastName.prefix(1)
@@ -71,10 +84,10 @@ class FriendsTableViewController: UITableViewController {
                     tempArr.append(friend)
                 }
             }
-            cell.friendLabel.text = "\(tempArr[indexPath.row].lastName) \(tempArr[indexPath.row].name)"
+            cell.friendLabel.text = "\(tempArr[indexPath.row].lastName) \(tempArr[indexPath.row].firstName)"
             cell.friendStatusLabel.text = "Online"
             let avatar = tempArr[indexPath.row].avatar != "" ? tempArr[indexPath.row].avatar : "img_friends"
-            cell.friendImage.image = UIImage(named: avatar)
+            cell.friendImage.image = UIImage(named: avatar!)
             cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width / 2
             cell.friendImage.layer.masksToBounds = true
             
