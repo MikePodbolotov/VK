@@ -63,7 +63,13 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
+<<<<<<< HEAD
             endingLineNumber = "76">
+=======
+            endingLineNumber = "76"
+            landmarkName = "loadGroups(token:)"
+            landmarkType = "7">
+>>>>>>> hw_3.2
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -77,7 +83,13 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
+<<<<<<< HEAD
             endingLineNumber = "110">
+=======
+            endingLineNumber = "110"
+            landmarkName = "loadPhotos(token:owner_id:)"
+            landmarkType = "7">
+>>>>>>> hw_3.2
             <Locations>
                <Location
                   uuid = "9530E101-09EA-4B53-8E6B-B82C6EEC9B67 - 40a3bf7d9ec625a"
@@ -123,7 +135,13 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
+<<<<<<< HEAD
             endingLineNumber = "113">
+=======
+            endingLineNumber = "113"
+            landmarkName = "loadPhotos(token:owner_id:)"
+            landmarkType = "7">
+>>>>>>> hw_3.2
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -249,7 +267,13 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
+<<<<<<< HEAD
             endingLineNumber = "91">
+=======
+            endingLineNumber = "91"
+            landmarkName = "loadFriends(token:)"
+            landmarkType = "7">
+>>>>>>> hw_3.2
             <Locations>
                <Location
                   uuid = "35904206-7331-42AB-A245-CBD332AF3128 - d3e7c4a45357f173"
@@ -295,7 +319,13 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
+<<<<<<< HEAD
             endingLineNumber = "153">
+=======
+            endingLineNumber = "153"
+            landmarkName = "getFriendsWithSwiftyJSON(token:completion:)"
+            landmarkType = "7">
+>>>>>>> hw_3.2
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -309,7 +339,13 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "157"
+<<<<<<< HEAD
             endingLineNumber = "157">
+=======
+            endingLineNumber = "157"
+            landmarkName = "getFriendsWithSwiftyJSON(token:completion:)"
+            landmarkType = "7">
+>>>>>>> hw_3.2
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -323,7 +359,13 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
+<<<<<<< HEAD
             endingLineNumber = "147">
+=======
+            endingLineNumber = "147"
+            landmarkName = "getFriendsWithSwiftyJSON(token:completion:)"
+            landmarkType = "7">
+>>>>>>> hw_3.2
             <Locations>
                <Location
                   uuid = "2F3A1610-ACDF-46E3-BD3B-83EA41D7E6F1 - 424f19137dc1c37e"

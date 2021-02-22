@@ -8,14 +8,29 @@
 import UIKit
 
 private let reuseIdentifier = "Cell"
+let token = Session.dataSession.token
 
 class FriendCollectionViewController: UICollectionViewController {
 
-    var friend: Friend!
+    var friends: [Friend]!
+    var friend: Friend?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "\(friend.lastName) \(friend.name)"
+        
+        NetworkService.shared.getFriendsWithSwiftyJSON(token: token) { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let friendsArray):
+                self.friends = friendsArray
+                
+                print(friendsArray.map { $0.lastName })
+            case .failure(let error):
+                print(error)
+            }
+        }
+//        self.title = "\(friend.lastName) \(friend.name)"
     }
 
     // MARK: UICollectionViewDataSource
@@ -33,8 +48,8 @@ class FriendCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? FriendCollectionViewCell {
-            let avatar = friend.avatar != "" ? friend.avatar : "img_friends"
-            cell.friendImage.image = UIImage(named: avatar)
+            let avatar = friend?.avatar != "" ? friend?.avatar : "img_friends"
+            cell.friendImage.image = UIImage(named: avatar!)
             return cell
         }
     
