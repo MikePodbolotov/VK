@@ -22,32 +22,59 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
 
-        guard friends != nil else { return }
-        for friend in friends! {
-            let char = friend.lastName.prefix(1)
-            if sections.contains(String(char)) { continue }
-            sections.append(String(char))
-        }
-        sections.sort(by: <)
-        characterPicker.chars = sections
-        characterPicker.setupUi()
+//        guard friends != nil else { return }
+//        for friend in friends! {
+//            let char = friend.lastName.prefix(1)
+//            if sections.contains(String(char)) { continue }
+//            sections.append(String(char))
+//        }
+//        sections.sort(by: <)
+//        characterPicker.chars = sections
+//        characterPicker.setupUi()
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//        NetworkService.loadFriends(token: token) { [weak self] (friendResponse) in
+//            self?.friends = friendResponse.response.items
+//        }
+//
+//        guard friends != nil else { return }
+//        for friend in friends! {
+//            let char = friend.lastName.prefix(1)
+//            if sections.contains(String(char)) { continue }
+//            sections.append(String(char))
+//        }
+//        sections.sort(by: <)
+//        tableView.reloadData()
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         NetworkService.loadFriends(token: token) { [weak self] (friendResponse) in
             self?.friends = friendResponse.response.items
+            
+            guard let friends = self?.friends else { return }
+            
+            for friend in friends {
+                let char = friend.lastName.prefix(1)
+                
+                let boolValue = self?.sections.contains(String(char)) ?? false
+                if boolValue {
+                    continue
+                }
+                self?.sections.append(String(char))
+            }
+            self?.sections.sort(by: <)
+            self?.characterPicker.chars = self?.sections ?? [""]
+            self?.characterPicker.setupUi()
+            
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
-        
-        guard friends != nil else { return }
-        for friend in friends! {
-            let char = friend.lastName.prefix(1)
-            if sections.contains(String(char)) { continue }
-            sections.append(String(char))
-        }
-        sections.sort(by: <)
-        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

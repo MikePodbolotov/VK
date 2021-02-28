@@ -20,15 +20,29 @@ class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
         searchBar.delegate = self
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//        NetworkService.loadGroups(token: token) { (groupResponse) in
+//            self.groups = groupResponse.response.items
+//        }
+//        filterGroups = groups
+//        tableView.reloadData()
+//    }
+    
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        NetworkService.loadGroups(token: token) { (groupResponse) in
-            self.groups = groupResponse.response.items
+            super.viewWillAppear(animated)
+            
+            NetworkService.loadGroups(token: token) { [weak self] (groupResponse) in
+                self?.groups = groupResponse.response.items
+                
+                self?.filterGroups = self?.groups
+                
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
         }
-        filterGroups = groups
-        tableView.reloadData()
-    }
 
     // MARK: - Table view data source
 //    override func numberOfSections(in tableView: UITableView) -> Int {

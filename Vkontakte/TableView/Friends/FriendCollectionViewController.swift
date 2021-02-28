@@ -21,15 +21,28 @@ class FriendCollectionViewController: UICollectionViewController {
         
         self.title = "\(friend.lastName) \(friend.firstName)"
         
-        NetworkService.loadPhotos(token: token, owner_id: String(friend.id)) { [self] (photoResponse) in
+//        NetworkService.loadPhotos(token: token, owner_id: String(friend.id)) { [self] (photoResponse) in
+//            let tempArrayPhotos = photoResponse.response.items
+//            for tempPhoto in tempArrayPhotos {
+//                guard !tempPhoto.sizes.isEmpty else { return }
+//                for urlPhoto in tempPhoto.sizes {
+//                    urlArrayPhoto.append(urlPhoto.url)
+//                }
+//            }
+//            print("Enter viewDidLoad. Count: \(tempArrayPhotos.count)")
+//        }
+        
+        NetworkService.loadPhotos(token: token, owner_id: String(friend.id)) { [weak self] (photoResponse) in
             let tempArrayPhotos = photoResponse.response.items
             for tempPhoto in tempArrayPhotos {
                 guard !tempPhoto.sizes.isEmpty else { return }
                 for urlPhoto in tempPhoto.sizes {
-                    urlArrayPhoto.append(urlPhoto.url)
+                    self?.urlArrayPhoto.append(urlPhoto.url)
                 }
             }
-            print("Enter viewDidLoad. Count: \(tempArrayPhotos.count)")
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
         }
     }
 
