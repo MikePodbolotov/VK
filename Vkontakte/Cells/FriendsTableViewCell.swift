@@ -23,4 +23,19 @@ class FriendsTableViewCell: UITableViewCell {
     @IBOutlet weak var friendLabel: UILabel!
     @IBOutlet weak var friendImage: UIImageView!
     @IBOutlet weak var friendStatusLabel: UILabel!
+    @IBOutlet weak var frinedStatusImage: UIImageView!
+    
+    func downLoadImage(from stringURL: String) {
+        guard let url = URL(string: stringURL) else { return }
+        
+        URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            if let data = data {
+                let uiImage = UIImage(data: data)
+                DispatchQueue.main.async {
+                    self?.friendImage.image = uiImage
+                }
+                
+            }
+        }.resume()
+    }
 }

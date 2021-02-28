@@ -12,29 +12,16 @@ let token = Session.dataSession.token
 
 class FriendCollectionViewController: UICollectionViewController {
 
-    var friends: [Friend]!
-    var friend: Friend?
+//    var friends: [VKFriend]!
+    var friend: VKFriend!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkService.shared.getFriendsWithSwiftyJSON(token: token) { [weak self] (result) in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let friendsArray):
-                self.friends = friendsArray
-                
-                print(friendsArray.map { $0.lastName })
-            case .failure(let error):
-                print(error)
-            }
-        }
-//        self.title = "\(friend.lastName) \(friend.name)"
+        self.title = "\(friend.lastName) \(friend.firstName)"
     }
 
     // MARK: UICollectionViewDataSource
-
 //    override func numberOfSections(in collectionView: UICollectionView) -> Int {
 //        // #warning Incomplete implementation, return the number of sections
 //        return 0
@@ -48,8 +35,8 @@ class FriendCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? FriendCollectionViewCell {
-            let avatar = friend?.avatar != "" ? friend?.avatar : "img_friends"
-            cell.friendImage.image = UIImage(named: avatar!)
+//            let avatar = friend?.avatar != "" ? friend?.avatar : "img_friends"
+            cell.friendImage.image = UIImage(named: "img_friends")
             return cell
         }
     

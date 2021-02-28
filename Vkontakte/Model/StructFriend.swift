@@ -6,38 +6,53 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 // MARK: - Friend
-class Friend {
-    let firstName: String
-//    let id: Int
-    let lastName: String
-//    let canAccessClosed, isClosed: Bool
-//    let sex: Int
-//    let photo50: String
-    let online: Int
-//    let nickname, domain: String
-//    let country, city: String
-//    let lastSeen: Int
-//    let trackCode: String
-//    let relation: Int?
-//    let bdate: String?
-    let avatar: String?
-
-    
-    init(from json: JSON) {
-        self.firstName = json["first_name"].stringValue
-        self.lastName = json["last_name"].stringValue
-        self.online = json["online"].intValue
-        self.avatar = ""
-    }
-    
+struct ResponseFriend: Codable {
+    let response: ItemFriend
 }
 
-//struct Friend {
-//    var name: String
-//    var lastName: String
-//    var age: UInt8
-//    var avatar: String //путь до картинки
-//}
+// MARK: - Response
+struct ItemFriend: Codable {
+    let count: Int
+    let items: [VKFriend]
+}
+
+// MARK: - Item
+struct VKFriend: Codable {
+    let firstName: String
+    let id: Int
+    let lastName: String
+    let sex: Int
+    let photo50: String
+    let online: Int
+    let nickname: String?
+    let country: City?
+    let city: City?
+    let lastSeen: LastSeen?
+    let relation: Int?
+    let bdate: String?
+
+    enum CodingKeys: String, CodingKey {
+        case firstName = "first_name"
+        case id
+        case lastName = "last_name"
+        case sex
+        case photo50 = "photo_50"
+        case online, nickname, country
+        case lastSeen = "last_seen"
+        case city, relation, bdate
+    }
+}
+
+// MARK: - City
+struct City: Codable {
+    let id: Int
+    let title: String
+}
+
+//// MARK: - LastSeen
+struct LastSeen: Codable {
+    let platform, time: Int
+}
+

@@ -7,303 +7,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "40EB9DF8-E42E-4471-8E3F-A314ABD3A657"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/LoginVkWebViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "44668851-D60A-4B23-9A3C-3A20C60C6009"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/LoginVkWebViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EFA0E22A-1DD2-4205-AB2D-BE7CFF9F2C91"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/LoginVkWebViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "135A82F6-4E88-4E69-917B-BBDCA2BC3338"
+            uuid = "077B3F84-7DFC-4F3B-B0E5-DB8A6AF1A4D2"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vkontakte/Service/NetworkService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-<<<<<<< HEAD
-            endingLineNumber = "76">
-=======
-            endingLineNumber = "76"
-            landmarkName = "loadGroups(token:)"
-            landmarkType = "7">
->>>>>>> hw_3.2
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "NetworkService"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9530E101-09EA-4B53-8E6B-B82C6EEC9B67"
+            uuid = "AB2F7BE0-BEEF-49EE-B5DE-55CFC1EBA17D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vkontakte/Service/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-<<<<<<< HEAD
-            endingLineNumber = "110">
-=======
-            endingLineNumber = "110"
-            landmarkName = "loadPhotos(token:owner_id:)"
-            landmarkType = "7">
->>>>>>> hw_3.2
-            <Locations>
-               <Location
-                  uuid = "9530E101-09EA-4B53-8E6B-B82C6EEC9B67 - 40a3bf7d9ec625a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static Vkontakte.NetworkService.loadPhotos(token: Swift.String, owner_id: Swift.String) -&gt; ()"
-                  moduleName = "Vkontakte"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/podm/Swift%20Project/Geekbrains/GB%201.3_Client-Server/Vkontakte/Vkontakte/Service/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "108"
-                  endingLineNumber = "108"
-                  offsetFromSymbolStart = "930">
-               </Location>
-               <Location
-                  uuid = "9530E101-09EA-4B53-8E6B-B82C6EEC9B67 - 22a03ed00e88a5b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in static Vkontakte.NetworkService.loadPhotos(token: Swift.String, owner_id: Swift.String) -&gt; ()"
-                  moduleName = "Vkontakte"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/podm/Swift%20Project/Geekbrains/GB%201.3_Client-Server/Vkontakte/Vkontakte/Service/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "109"
-                  endingLineNumber = "109"
-                  offsetFromSymbolStart = "76">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4706FAD5-D3E6-4C08-886D-762F93019E37"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/Service/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-<<<<<<< HEAD
-            endingLineNumber = "113">
-=======
-            endingLineNumber = "113"
-            landmarkName = "loadPhotos(token:owner_id:)"
-            landmarkType = "7">
->>>>>>> hw_3.2
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E259B7A5-A57E-460F-90F7-0B4BFFB5D277"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/TableView/GroupVK/MyGroupTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "unwindFromTableViewController(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DD6B65A6-A913-495E-9BF3-DD175D6A4705"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/TableView/GroupVK/MyGroupTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "61BF59F2-4EAD-4687-82FB-20CB9942521C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/TableView/GroupVK/MyGroupTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "searchBar(_:textDidChange:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BCCD194F-A957-43E3-8998-8FBFA6A295C4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/TableView/GroupVK/MyGroupTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
             endingLineNumber = "94"
-            landmarkName = "searchBar(_:textDidChange:)"
+            landmarkName = "loadFriends(token:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5FC56704-9910-416F-BC67-53219F3D1A3F"
+            uuid = "8A5A6DBB-FDA1-475F-B534-2E1E22CC7398"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Vkontakte/TableView/GroupVK/MyGroupTableViewController.swift"
+            filePath = "Vkontakte/FriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "searchBar(_:textDidChange:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F4D5FCD3-2607-4F03-B2A1-AD052AFB1E04"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/TableView/GroupVK/MyGroupTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "searchBar(_:textDidChange:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5BBE4D61-45AB-4755-AED3-758100D4A284"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/LoginVkWebViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "35904206-7331-42AB-A245-CBD332AF3128"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/Service/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-<<<<<<< HEAD
-            endingLineNumber = "91">
-=======
-            endingLineNumber = "91"
-            landmarkName = "loadFriends(token:)"
-            landmarkType = "7">
->>>>>>> hw_3.2
             <Locations>
                <Location
-                  uuid = "35904206-7331-42AB-A245-CBD332AF3128 - d3e7c4a45357f173"
+                  uuid = "8A5A6DBB-FDA1-475F-B534-2E1E22CC7398 - caf3f942b683aa77"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static Vkontakte.NetworkService.loadFriends(token: Swift.String) -&gt; ()"
+                  symbolName = "Vkontakte.FriendsViewController.viewWillAppear(Swift.Bool) -&gt; ()"
                   moduleName = "Vkontakte"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/podm/Swift%20Project/Geekbrains/GB%201.3_Client-Server/Vkontakte/Vkontakte/Service/NetworkService.swift"
+                  urlString = "file:///Users/podm/Swift%20Project/Geekbrains/GB%201.3_Client-Server/Vkontakte/Vkontakte/FriendsViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "743">
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "276">
                </Location>
                <Location
-                  uuid = "35904206-7331-42AB-A245-CBD332AF3128 - 164fc91fbe32bead"
+                  uuid = "8A5A6DBB-FDA1-475F-B534-2E1E22CC7398 - 841b842e3d17b248"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in static Vkontakte.NetworkService.loadFriends(token: Swift.String) -&gt; ()"
+                  symbolName = "closure #1 (Vkontakte.ResponseFriend) -&gt; () in Vkontakte.FriendsViewController.viewWillAppear(Swift.Bool) -&gt; ()"
                   moduleName = "Vkontakte"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/podm/Swift%20Project/Geekbrains/GB%201.3_Client-Server/Vkontakte/Vkontakte/Service/NetworkService.swift"
+                  urlString = "file:///Users/podm/Swift%20Project/Geekbrains/GB%201.3_Client-Server/Vkontakte/Vkontakte/FriendsViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "76">
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "101">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -311,93 +87,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5836D161-79AE-4FFD-BF8B-06C155222DE5"
-            shouldBeEnabled = "Yes"
+            uuid = "97DEDE19-AF2C-4A4B-A2CC-BE3AB59356F5"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Vkontakte/Service/NetworkService.swift"
+            filePath = "Vkontakte/FriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-<<<<<<< HEAD
-            endingLineNumber = "153">
-=======
-            endingLineNumber = "153"
-            landmarkName = "getFriendsWithSwiftyJSON(token:completion:)"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
->>>>>>> hw_3.2
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "36F45F2E-13FF-448D-B77A-DDEBE10BE31C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/Service/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-<<<<<<< HEAD
-            endingLineNumber = "157">
-=======
-            endingLineNumber = "157"
-            landmarkName = "getFriendsWithSwiftyJSON(token:completion:)"
-            landmarkType = "7">
->>>>>>> hw_3.2
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2F3A1610-ACDF-46E3-BD3B-83EA41D7E6F1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Vkontakte/Service/NetworkService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-<<<<<<< HEAD
-            endingLineNumber = "147">
-=======
-            endingLineNumber = "147"
-            landmarkName = "getFriendsWithSwiftyJSON(token:completion:)"
-            landmarkType = "7">
->>>>>>> hw_3.2
-            <Locations>
-               <Location
-                  uuid = "2F3A1610-ACDF-46E3-BD3B-83EA41D7E6F1 - 424f19137dc1c37e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vkontakte.NetworkService.getFriendsWithSwiftyJSON(token: Swift.String, completion: Swift.Optional&lt;(Swift.Result&lt;Swift.Array&lt;Vkontakte.Friend&gt;, Swift.Error&gt;) -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "Vkontakte"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/podm/Swift%20Project/Geekbrains/GB%201.3_Client-Server/Vkontakte/Vkontakte/Service/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "147"
-                  endingLineNumber = "147"
-                  offsetFromSymbolStart = "769">
-               </Location>
-               <Location
-                  uuid = "2F3A1610-ACDF-46E3-BD3B-83EA41D7E6F1 - 76a615f2f41e01cf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in Vkontakte.NetworkService.getFriendsWithSwiftyJSON(token: Swift.String, completion: Swift.Optional&lt;(Swift.Result&lt;Swift.Array&lt;Vkontakte.Friend&gt;, Swift.Error&gt;) -&gt; ()&gt;) -&gt; ()"
-                  moduleName = "Vkontakte"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/podm/Swift%20Project/Geekbrains/GB%201.3_Client-Server/Vkontakte/Vkontakte/Service/NetworkService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "148"
-                  endingLineNumber = "148"
-                  offsetFromSymbolStart = "274">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

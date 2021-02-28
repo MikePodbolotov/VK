@@ -17,6 +17,11 @@ class MyGroupTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    override func prepareForReuse() {
+        myGroupLabel.text = ""
+        myGroupImage.image = nil
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -24,4 +29,17 @@ class MyGroupTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func downLoadImage(from stringURL: String) {
+        guard let url = URL(string: stringURL) else { return }
+        
+        URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            if let data = data {
+                let uiImage = UIImage(data: data)
+                DispatchQueue.main.async {
+                    self?.myGroupImage.image = uiImage
+                }
+                
+            }
+        }.resume()
+    }
 }

@@ -8,40 +8,22 @@
 import UIKit
 
 class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var characterPicker: CharacterPicker!
     
-    var networkService: NetworkService!
-    var friends: [Friend]!
+    var friends: [VKFriend]?
     var sections = [String]()
-    var chosenFriend: Friend!
+    var chosenFriend: VKFriend!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
         tableView.dataSource = self
-        
-        NetworkService.shared.getFriendsWithSwiftyJSON(token: token) { [weak self] (result) in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let friendsArray):
-                self.friends = friendsArray
-            
-                print(friendsArray.map { $0.lastName })
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-//        networkService = NetworkService()
-//        friends = networkService.getFriends()
-//        let token = Session.dataSession.token
-//        let friendsJSON = NetworkService.loadFriends(token: token)
-        
-        for friend in friends {
+
+        guard friends != nil else { return }
+        for friend in friends! {
             let char = friend.lastName.prefix(1)
             if sections.contains(String(char)) { continue }
             sections.append(String(char))
@@ -49,6 +31,23 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         sections.sort(by: <)
         characterPicker.chars = sections
         characterPicker.setupUi()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NetworkService.loadFriends(token: token) { [weak self] (friendResponse) in
+            self?.friends = friendResponse.response.items
+        }
+        
+        guard friends != nil else { return }
+        for friend in friends! {
+            let char = friend.lastName.prefix(1)
+            if sections.contains(String(char)) { continue }
+            sections.append(String(char))
+        }
+        sections.sort(by: <)
+        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -90,50 +89,36 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         return sections.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        var tempArr = [Friend]()
-        for friend in friends {
+        var tempArr = [VKFriend]()
+        for friend in friends! {
             if friend.lastName.prefix(1) == sections[section] {
                 tempArr.append(friend)
                 }
         }
         return tempArr.count
-        
-//        return friends.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section]
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? FriendsTableViewCell {
-            var tempArr = [Friend]()
-            for friend in friends {
+            var tempArr = [VKFriend]()
+            guard friends != nil else { return UITableViewCell() }
+            for friend in friends! {
                 if friend.lastName.prefix(1) == sections[indexPath.section] {
                     tempArr.append(friend)
                 }
             }
             cell.friendLabel.text = "\(tempArr[indexPath.row].lastName) \(tempArr[indexPath.row].firstName)"
-            cell.friendStatusLabel.text = "Online"
-            let avatar = tempArr[indexPath.row].avatar != "" ? tempArr[indexPath.row].avatar : "img_friends"
-            cell.friendImage.image = UIImage(named: avatar!)
+            cell.friendStatusLabel.text = tempArr[indexPath.row].online == 0 ? "Offline" : "Online"
+            cell.frinedStatusImage.image = tempArr[indexPath.row].online == 0 ? UIImage(named: "scribble") : UIImage(named: "pencil")
+            cell.downLoadImage(from: tempArr[indexPath.row].photo50)
             cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width / 2
             cell.friendImage.layer.masksToBounds = true
-            
-            //                cell.friendLabel.text = "\(friends[indexPath.row].lastName) \(friends[indexPath.row].name)"
-            //                cell.friendStatusLabel.text = "Online"
-            //                let avatar = friends[indexPath.row].avatar != "" ? friends[indexPath.row].avatar : "img_friends"
-            //                cell.friendImage.image = UIImage(named: avatar)
-            //                cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width / 2
-            //                cell.friendImage.layer.masksToBounds = true
-            //            Тень не работает %(
-            //            cell.friendImage.layer.shadowColor = UIColor.black.cgColor
-            //            cell.friendImage.layer.shadowOpacity = 0.5
-            //            cell.friendImage.layer.shadowRadius = 8
-            //            cell.friendImage.layer.shadowOffset = CGSize.zero
-            //            cell.friendImage.layer.masksToBounds = false
             
             return cell
         }
@@ -142,9 +127,10 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-        var tempArr = [Friend]()
-        for friend in friends {
+        
+        var tempArr = [VKFriend]()
+        guard friends != nil else { return }
+        for friend in friends! {
             if friend.lastName.prefix(1) == sections[indexPath.section] {
                 tempArr.append(friend)
             }

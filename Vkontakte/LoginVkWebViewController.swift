@@ -63,10 +63,26 @@ extension LoginVkWebViewController: WKNavigationDelegate {
         }
         Session.dataSession.token = token
         
-//        NetworkService.loadGroups(token: token)
-//        NetworkService.loadFriends(token: token)
+//        NetworkService.loadGroupsSimple(token: token)
+//        NetworkService.loadFriendsSimple(token: token)
 //        NetworkService.loadPhotos(token: token, owner_id: "1654070")
 //        NetworkService.searchGroup(token: token, query: "Туманный Альбион")
+        
+        NetworkService.loadGroups(token: token) { [weak self] (groupResponse) in
+
+            let gropVC = MyGroupTableViewController()
+            gropVC.groups = groupResponse.response.items
+
+            self?.navigationController?.pushViewController(gropVC, animated: true)
+        }
+        
+        NetworkService.loadFriends(token: token) { [weak self] (friendResponse) in
+            
+            let friendVC = FriendsTableViewController()
+            friendVC.friends = friendResponse.response.items
+            
+            self?.navigationController?.pushViewController(friendVC, animated: true)
+        }
         
         decisionHandler(.cancel)
         performSegue(withIdentifier: "segueToMainScreen", sender: self)

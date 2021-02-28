@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
 
 class NetworkService {
     
@@ -33,67 +32,95 @@ class NetworkService {
     
         }
     
-//    func getFriends() -> [Friend] {
-//        return [
-//            Friend(name: "Иван", lastName: "Иванов", age: 38, avatar: "avatar_1"),
-//            Friend(name: "Денис", lastName: "Иванов", age: 16, avatar: ""),
-//            Friend(name: "Мария", lastName: "Иванова", age: 8, avatar: ""),
-//            Friend(name: "Елена", lastName: "Иванова", age: 38, avatar: ""),
-//            Friend(name: "Петр", lastName: "Петров", age: 30, avatar: "avatar_2"),
-//            Friend(name: "Дмитрий", lastName: "Петухов", age: 20, avatar: ""),
-//            Friend(name: "Евгений", lastName: "Попов", age: 40, avatar: ""),
-//            Friend(name: "Евгений", lastName: "Павлов", age: 35, avatar: ""),
-//            Friend(name: "Дон", lastName: "Пончик", age: 30, avatar: ""),
-//            Friend(name: "Артем", lastName: "Кузнецов", age: 35, avatar: "avatar_4"),
-//            Friend(name: "Денис", lastName: "Сидоров", age: 36, avatar: ""),
-//            Friend(name: "Оксана", lastName: "Сидорова", age: 26, avatar: ""),
-//            Friend(name: "Денис", lastName: "Смирнов", age: 46, avatar: ""),
-//            Friend(name: "Ольга", lastName: "Смирнова", age: 46, avatar: ""),
-//            Friend(name: "Майкл", lastName: "Медведь", age: 36, avatar: ""),
-//            Friend(name: "Лариса", lastName: "Лиса", age: 27, avatar: "avatar_3"),
-//            Friend(name: "Ли", lastName: "Дьенк", age: 40, avatar: ""),
-//            Friend(name: "Ким", lastName: "Цой", age: 35, avatar: "avatar_4"),
-//            Friend(name: "Анита", lastName: "Цой", age: 36, avatar: ""),
-//            Friend(name: "Жан", lastName: "Кристоф", age: 26, avatar: ""),
-//            Friend(name: "Дункан", lastName: "Маклауд", age: 46, avatar: ""),
-//            Friend(name: "Ольга", lastName: "Лалетина", age: 46, avatar: ""),
-//            Friend(name: "Марина", lastName: "Гончар", age: 36, avatar: ""),
-//            Friend(name: "Павел", lastName: "Гончар", age: 27, avatar: "avatar_3")]
-//    }
-    
-    static func loadGroups(token: String) {
+    static func loadGroups(token: String, completion: @escaping (_ group: ResponseGroup) -> ()) {
         let baseURL = "https://api.vk.com"
         let path = "/method/groups.get"
         let params: Parameters = [
             "access_token": token,
             "extended": 1,  //если указать в качестве этого параметра 1, то будет возвращена полная информация о группах пользователя. По умолчанию 0.
-            "count": 50,    //count - количество сообществ, информацию о которых нужно вернуть
+//            "count": 150,    //count - количество сообществ, информацию о которых нужно вернуть
             "v": "5.130"]
         
-        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseJSON { (response) in
-            guard let json = response.value else { return }
-            print("------- ГРУППЫ -------")
-//            print(json)
+        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseData { (response) in
+
+            switch response.result {
+            case .success:
+                if let data = response.data {
+                    do {
+                    let groupResponse = try JSONDecoder().decode(ResponseGroup.self, from: data)
+                    completion(groupResponse)
+                        
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
     
-    static func loadFriends(token: String) {
+//    static func loadGroupsSimple(token: String) {
+//        let baseURL = "https://api.vk.com"
+//        let path = "/method/groups.get"
+//        let params: Parameters = [
+//            "access_token": token,
+//            "extended": 1,
+//            "v": "5.130"]
+//
+//        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseJSON { (response) in
+//            guard let json = response.value else { return }
+//            print("------- ГРУППЫ -------")
+//            print(json)
+//        }
+//    }
+                
+    static func loadFriends(token: String, completion: @escaping (_ friend: ResponseFriend) -> ()) {
         let baseURL = "https://api.vk.com"
         let path = "/method/friends.get"
         let params: Parameters = [
             "access_token": token,
             "order": "name",    //order - порядок, в котором нужно вернуть список друзей
-            "count": 2,         //count - количество друзей, которое нужно вернуть
+            "count": 200,         //count - количество друзей, которое нужно вернуть
             "fields": "nickname, domain, sex, bdate, city, country, online, last_seen, relation, photo_50",  //fields - список дополнительных полей, которые необходимо вернуть.
             //            name_case - падеж для склонения имени и фамилии пользователя
             "v": "5.130"]
         
-        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseJSON { (response) in
-            guard let json = response.value else { return }
-            print("------- ДРУЗЬЯ -------")
-//            print(json)
+        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseData { (response) in
+            switch response.result {
+            case .success:
+                if let data = response.data {
+                    do {
+                        let friendResponse = try JSONDecoder().decode(ResponseFriend.self, from: data)
+                        completion(friendResponse)
+                    }
+                    catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
+    
+//    static func loadFriendsSimple(token: String) {
+//        let baseURL = "https://api.vk.com"
+//        let path = "/method/friends.get"
+//        let params: Parameters = [
+//            "access_token": token,
+//            "order": "name",    //order - порядок, в котором нужно вернуть список друзей
+//            "count": 10,         //count - количество друзей, которое нужно вернуть
+//            "fields": "nickname, domain, sex, bdate, city, country, online, last_seen, relation, photo_50",  //fields - список дополнительных полей, которые необходимо вернуть.
+//            //            name_case - падеж для склонения имени и фамилии пользователя
+//            "v": "5.130"]
+//
+//        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseJSON { (response) in
+//            guard let json = response.value else { return }
+//            print("------- ГРУППЫ -------")
+//            print(json)
+//        }
+//    }
     
     static func loadPhotos(token: String, owner_id: String) {
         let baseURL = "https://api.vk.com"
@@ -131,32 +158,6 @@ class NetworkService {
             guard let json = response.value else { return }
             print("------- ПОИСК ГРУПП -------")
 //            print(json)
-        }
-    }
-    
-    func getFriendsWithSwiftyJSON(token: String, completion: ((Result<[Friend], Error>) -> Void)? = nil) {
-        let baseURL = "https://api.vk.com"
-        let path = "/method/friends.get"
-        let params: Parameters = [
-            "access_token": token,
-            "order": "name",    //order - порядок, в котором нужно вернуть список друзей
-            "count": 25,         //count - количество друзей, которое нужно вернуть
-            "fields": "nickname, domain, sex, bdate, city, country, online, last_seen, relation, photo_50",  //fields - список дополнительных полей, которые необходимо вернуть.
-            //            name_case - падеж для склонения имени и фамилии пользователя
-            "v": "5.130"]
-        AF.request(baseURL + path, method: .get, parameters: params).responseJSON { (response) in
-            switch response.result {
-            case .success(let data):
-                let json = JSON(data)
-                let friendsJSON = json["items"].arrayValue
-                let friends = friendsJSON.map { Friend(from: $0) }
-                print("---------  ЗАШЕЛ СЮДА ---------")
-                print(friends.count)
-                completion?(.success(friends))
-            case .failure(let error):
-                print(error.localizedDescription)
-                completion?(.failure(error))
-            }
         }
     }
 }
