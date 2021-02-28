@@ -84,11 +84,11 @@ extension LoginVkWebViewController: WKNavigationDelegate {
             self?.navigationController?.pushViewController(friendVC, animated: true)
         }
         
-        NetworkService.loadPhotos(token: token, owner_id: "1654070") { [weak self] (photoResponse) in
-            
-            let photosResponse = photoResponse.response.items
-            print(photoResponse)
-        }
+//        NetworkService.loadPhotos(token: token, owner_id: "1654070") { [weak self] (photoResponse) in
+//
+//            let photosResponse = photoResponse.response.items
+//            print(photoResponse)
+//        }
 
         decisionHandler(.cancel)
         performSegue(withIdentifier: "segueToMainScreen", sender: self)
