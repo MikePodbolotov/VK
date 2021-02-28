@@ -7,12 +7,12 @@
 
 import Foundation
 
-// MARK: - Group
+// MARK: - Response Group
 struct ResponseGroup: Codable {
     let response: ItemGroup
 }
 
-// MARK: - Response
+// MARK: - Items Group
 struct ItemGroup: Codable {
     let count: Int
     let items: [VKGroup]

@@ -14,11 +14,23 @@ class FriendCollectionViewController: UICollectionViewController {
 
 //    var friends: [VKFriend]!
     var friend: VKFriend!
+    var urlArrayPhoto = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "\(friend.lastName) \(friend.firstName)"
+        
+        NetworkService.loadPhotos(token: token, owner_id: String(friend.id)) { [self] (photoResponse) in
+            let tempArrayPhotos = photoResponse.response.items
+            for tempPhoto in tempArrayPhotos {
+                guard !tempPhoto.sizes.isEmpty else { return }
+                for urlPhoto in tempPhoto.sizes {
+                    urlArrayPhoto.append(urlPhoto.url)
+                }
+            }
+            print("Enter viewDidLoad. Count: \(tempArrayPhotos.count)")
+        }
     }
 
     // MARK: UICollectionViewDataSource
@@ -30,13 +42,14 @@ class FriendCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 3
+        print("Enter numberOfItemsInSection. Count = \(urlArrayPhoto.count)")
+        return urlArrayPhoto.count
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? FriendCollectionViewCell {
-//            let avatar = friend?.avatar != "" ? friend?.avatar : "img_friends"
-            cell.friendImage.image = UIImage(named: "img_friends")
+            cell.downLoadImage(from: urlArrayPhoto[indexPath.row])
             return cell
         }
     

@@ -19,6 +19,7 @@
 		C443D73D25D5E21D00774062 /* LoginVkWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443D73C25D5E21D00774062 /* LoginVkWebViewController.swift */; };
 		C445993E259F628C00CA5C28 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445993D259F628C00CA5C28 /* FriendsTableViewController.swift */; };
 		C4459942259F63FD00CA5C28 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4459941259F63FD00CA5C28 /* FriendsTableViewCell.swift */; };
+		C449809025EC2281003EBF0A /* StructPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C449808F25EC2281003EBF0A /* StructPhoto.swift */; };
 		C477B2E225A3BFA100366191 /* MyGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C477B2E125A3BFA100366191 /* MyGroupTableViewController.swift */; };
 		C477B2E525A3BFB200366191 /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C477B2E425A3BFB200366191 /* AllGroupsTableViewController.swift */; };
 		C477B2E825A3C0B800366191 /* MyGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C477B2E725A3C0B800366191 /* MyGroupTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 		C443D73C25D5E21D00774062 /* LoginVkWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVkWebViewController.swift; sourceTree = "<group>"; };
 		C445993D259F628C00CA5C28 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		C4459941259F63FD00CA5C28 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
+		C449808F25EC2281003EBF0A /* StructPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructPhoto.swift; sourceTree = "<group>"; };
 		C477B2E125A3BFA100366191 /* MyGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupTableViewController.swift; sourceTree = "<group>"; };
 		C477B2E425A3BFB200366191 /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
 		C477B2E725A3C0B800366191 /* MyGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupTableViewCell.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			children = (
 				C477B2F425A3C5E600366191 /* StructFriend.swift */,
 				C477B2F725A3C60400366191 /* StructGroup.swift */,
+				C449808F25EC2281003EBF0A /* StructPhoto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				C477B2E825A3C0B800366191 /* MyGroupTableViewCell.swift in Sources */,
 				C435516F2599254700C4EF30 /* SceneDelegate.swift in Sources */,
 				C41BDC4225C9EAAB005984F2 /* СharacterPicker.swift in Sources */,
+				C449809025EC2281003EBF0A /* StructPhoto.swift in Sources */,
 				C443D73A25D5D80E00774062 /* Session.swift in Sources */,
 				C477B2EF25A3C27800366191 /* AllGroupsTableViewCell.swift in Sources */,
 				C496FBAF259F7A2A0008989C /* FriendCollectionViewController.swift in Sources */,

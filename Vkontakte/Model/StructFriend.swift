@@ -7,12 +7,12 @@
 
 import Foundation
 
-// MARK: - Friend
+// MARK: - Response Friend
 struct ResponseFriend: Codable {
     let response: ItemFriend
 }
 
-// MARK: - Response
+// MARK: - Items Friend
 struct ItemFriend: Codable {
     let count: Int
     let items: [VKFriend]

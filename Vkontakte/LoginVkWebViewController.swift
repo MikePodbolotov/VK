@@ -65,7 +65,7 @@ extension LoginVkWebViewController: WKNavigationDelegate {
         
 //        NetworkService.loadGroupsSimple(token: token)
 //        NetworkService.loadFriendsSimple(token: token)
-//        NetworkService.loadPhotos(token: token, owner_id: "1654070")
+//        NetworkService.loadPhotosSimple(token: token, owner_id: "1654070")
 //        NetworkService.searchGroup(token: token, query: "Туманный Альбион")
         
         NetworkService.loadGroups(token: token) { [weak self] (groupResponse) in
@@ -84,6 +84,12 @@ extension LoginVkWebViewController: WKNavigationDelegate {
             self?.navigationController?.pushViewController(friendVC, animated: true)
         }
         
+        NetworkService.loadPhotos(token: token, owner_id: "1654070") { [weak self] (photoResponse) in
+            
+            let photosResponse = photoResponse.response.items
+            print(photoResponse)
+        }
+
         decisionHandler(.cancel)
         performSegue(withIdentifier: "segueToMainScreen", sender: self)
     }

@@ -122,26 +122,56 @@ class NetworkService {
 //        }
 //    }
     
-    static func loadPhotos(token: String, owner_id: String) {
+    static func loadPhotos(token: String, owner_id: String, completion: @escaping (_ photo: ResponsePhoto) -> ()) {
         let baseURL = "https://api.vk.com"
         let path = "/method/photos.getAll"
         let params: Parameters = [
             "access_token": token,
             "owner_id": owner_id,   //owner_id - идентификатор пользователя или сообщества, фотографии которого нужно получить.
-            "extended": 0,          //extended - 1 — возвращать расширенную информацию о фотографиях
+            "extended": 1,          //extended - 1 — возвращать расширенную информацию о фотографиях
             "count": 25,            //count - число фотографий, информацию о которых необходимо получить.
             "photo_sizes": 1,       //photo_sizes - 1 — будут возвращены размеры фотографий в специальном формате
             "skip_hidden": 1,       //skip_hidden - 1 — не возвращать фотографии, скрытые из блока над стеной пользователя (параметр учитывается только при owner_id > 0, параметр no_service_albums игнорируется).
             "v": "5.130"]
         
-        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseJSON { (response) in
-            guard let json = response.value else { return }
-            print("------- ФОТО -------")
-//            print(json)
+        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseData { (response) in
+            switch response.result {
+            case .success:
+                if let data = response.data {
+                    do {
+                        let photoResponse = try JSONDecoder().decode(ResponsePhoto.self, from: data)
+                        completion(photoResponse)
+                    }
+                    catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
     
-    static func searchGroup(token: String, query: String) {
+//    static func loadPhotosSimple(token: String, owner_id: String) {
+//        let baseURL = "https://api.vk.com"
+//        let path = "/method/photos.get"
+//        let params: Parameters = [
+//            "access_token": token,
+//            "owner_id": owner_id,   //owner_id - идентификатор пользователя или сообщества, фотографии которого нужно получить.
+//            "rev": 0,               //rev - порядок сортировки фотографий. Возможные значения: 1 — антихронологический; 0 — хронологический.
+//            "extended": 0,          //extended - 1 — возвращать расширенную информацию о фотографиях
+//            "count": 25,            //count - число фотографий, информацию о которых необходимо получить.
+//            "photo_sizes": 1,       //photo_sizes - 1 — будут возвращены размеры фотографий в специальном формате
+//            "v": "5.130"]
+//
+//        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseJSON { (response) in
+//            guard let json = response.value else { return }
+//            print("------- ФОТО -------")
+//            print(json)
+//        }
+//    }
+    
+    static func searchGroupSimple(token: String, query: String) {
         let baseURL = "https://api.vk.com"
         let path = "/method/groups.search"
         let params: Parameters = [
@@ -157,7 +187,7 @@ class NetworkService {
         NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseJSON { (response) in
             guard let json = response.value else { return }
             print("------- ПОИСК ГРУПП -------")
-//            print(json)
+            print(json)
         }
     }
 }
