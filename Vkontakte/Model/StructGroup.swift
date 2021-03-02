@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 // MARK: - Response Group
 struct ResponseGroup: Codable {
@@ -19,13 +20,13 @@ struct ItemGroup: Codable {
 }
 
 // MARK: - Item
-struct VKGroup: Codable {
-    let id: Int
-    let name, screenName: String
-    let isClosed: Int
-    let type: String
-    let isAdmin, isMember, isAdvertiser: Int
-    let photo50, photo100, photo200: String
+class VKGroup: Object, Codable {
+    @objc dynamic var id: Int
+    @objc dynamic var name, screenName: String
+    @objc dynamic var isClosed: Int
+    @objc dynamic var type: String
+    @objc dynamic var isAdmin, isMember, isAdvertiser: Int
+    @objc dynamic var photo50, photo100, photo200: String
 
     enum CodingKeys: String, CodingKey {
         case id, name

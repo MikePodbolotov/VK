@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 // MARK: - Response Friend
 struct ResponseFriend: Codable {
@@ -19,19 +20,19 @@ struct ItemFriend: Codable {
 }
 
 // MARK: - Item
-struct VKFriend: Codable {
-    let firstName: String
-    let id: Int
-    let lastName: String
-    let sex: Int
-    let photo50: String
-    let online: Int
-    let nickname: String?
-    let country: City?
-    let city: City?
-    let lastSeen: LastSeen?
-    let relation: Int?
-    let bdate: String?
+class VKFriend: Object, Codable {
+    @objc dynamic var firstName: String
+    @objc dynamic var id: Int
+    @objc dynamic var lastName: String
+    @objc dynamic var sex: Int
+    @objc dynamic var photo50: String
+    @objc dynamic var online: Int
+    @objc dynamic var nickname: String?
+    @objc dynamic var country: City?
+    @objc dynamic var city: City?
+    @objc dynamic var lastSeen: LastSeen?
+//    @objc dynamic var relation: Int
+    @objc dynamic var bdate: String?
 
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
@@ -41,18 +42,19 @@ struct VKFriend: Codable {
         case photo50 = "photo_50"
         case online, nickname, country
         case lastSeen = "last_seen"
-        case city, relation, bdate
+        case city, bdate
+//        case relation
     }
 }
 
 // MARK: - City
-struct City: Codable {
-    let id: Int
-    let title: String
+class City: Object, Codable {
+    @objc dynamic var id: Int
+    @objc dynamic var title: String
 }
 
 //// MARK: - LastSeen
-struct LastSeen: Codable {
-    let platform, time: Int
+class LastSeen: Object, Codable {
+    @objc dynamic var platform, time: Int
 }
 

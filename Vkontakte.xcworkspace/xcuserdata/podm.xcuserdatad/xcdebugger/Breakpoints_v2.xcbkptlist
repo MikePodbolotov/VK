@@ -14,8 +14,8 @@
             filePath = "Vkontakte/Service/NetworkService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "NetworkService"
             landmarkType = "3">
          </BreakpointContent>
@@ -30,9 +30,41 @@
             filePath = "Vkontakte/Service/NetworkService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "loadFriends(token:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30AEB1EF-66C1-4BCB-840D-47596B01E4B9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vkontakte/TableView/Friends/FriendCollectionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BDEDCDE2-A1EC-4E9A-A34D-59281017F692"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vkontakte/Service/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "loadPhotosGetAll(token:owner_id:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

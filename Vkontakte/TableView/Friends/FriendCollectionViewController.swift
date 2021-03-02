@@ -12,34 +12,19 @@ let token = Session.dataSession.token
 
 class FriendCollectionViewController: UICollectionViewController {
 
-//    var friends: [VKFriend]!
     var friend: VKFriend!
+    var photos = [VKPhoto]()
     var urlArrayPhoto = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "\(friend.lastName) \(friend.firstName)"
-        
-//        NetworkService.loadPhotos(token: token, owner_id: String(friend.id)) { [self] (photoResponse) in
-//            let tempArrayPhotos = photoResponse.response.items
-//            for tempPhoto in tempArrayPhotos {
-//                guard !tempPhoto.sizes.isEmpty else { return }
-//                for urlPhoto in tempPhoto.sizes {
-//                    urlArrayPhoto.append(urlPhoto.url)
-//                }
-//            }
-//            print("Enter viewDidLoad. Count: \(tempArrayPhotos.count)")
-//        }
-        
-        NetworkService.loadPhotos(token: token, owner_id: String(friend.id)) { [weak self] (photoResponse) in
-            let tempArrayPhotos = photoResponse.response.items
-            for tempPhoto in tempArrayPhotos {
-                guard !tempPhoto.sizes.isEmpty else { return }
-                for urlPhoto in tempPhoto.sizes {
-                    self?.urlArrayPhoto.append(urlPhoto.url)
-                }
-            }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NetworkService.loadPhotosGet(token: token, owner_id: String(friend.id)) { [weak self] (photoResponse) in
+            self?.photos = photoResponse.response.items
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
@@ -55,14 +40,18 @@ class FriendCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        print("Enter numberOfItemsInSection. Count = \(urlArrayPhoto.count)")
-        return urlArrayPhoto.count
+        return photos.count
         
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? FriendCollectionViewCell {
-            cell.downLoadImage(from: urlArrayPhoto[indexPath.row])
+            
+            let photo = photos[indexPath.row]
+            if let url = photo.sizes.first?.url {
+                cell.downLoadImage(from: url)
+            }
+            
             return cell
         }
     

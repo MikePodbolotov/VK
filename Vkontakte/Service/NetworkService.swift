@@ -32,6 +32,7 @@ class NetworkService {
     
         }
     
+    // MARK: - loadGroups
     static func loadGroups(token: String, completion: @escaping (_ group: ResponseGroup) -> ()) {
         let baseURL = "https://api.vk.com"
         let path = "/method/groups.get"
@@ -59,7 +60,7 @@ class NetworkService {
             }
         }
     }
-    
+    // MARK: - loadGroupsSimple
 //    static func loadGroupsSimple(token: String) {
 //        let baseURL = "https://api.vk.com"
 //        let path = "/method/groups.get"
@@ -74,7 +75,8 @@ class NetworkService {
 //            print(json)
 //        }
 //    }
-                
+    
+    // MARK: - loadFriends
     static func loadFriends(token: String, completion: @escaping (_ friend: ResponseFriend) -> ()) {
         let baseURL = "https://api.vk.com"
         let path = "/method/friends.get"
@@ -103,7 +105,7 @@ class NetworkService {
             }
         }
     }
-    
+    // MARK: - loadFriendsSimple
 //    static func loadFriendsSimple(token: String) {
 //        let baseURL = "https://api.vk.com"
 //        let path = "/method/friends.get"
@@ -122,14 +124,16 @@ class NetworkService {
 //        }
 //    }
     
-    static func loadPhotos(token: String, owner_id: String, completion: @escaping (_ photo: ResponsePhoto) -> ()) {
+    // MARK: - loadPhotosGetAll
+    static func loadPhotosGetAll(token: String, owner_id: String, completion: @escaping (_ photo: ResponsePhoto) -> ()) {
         let baseURL = "https://api.vk.com"
         let path = "/method/photos.getAll"
         let params: Parameters = [
             "access_token": token,
             "owner_id": owner_id,   //owner_id - идентификатор пользователя или сообщества, фотографии которого нужно получить.
             "extended": 1,          //extended - 1 — возвращать расширенную информацию о фотографиях
-            "count": 25,            //count - число фотографий, информацию о которых необходимо получить.
+            "count": 5,             //count - число фотографий, информацию о которых необходимо получить.
+            "no_service_albums": 1, //no_service_albums - 0 — вернуть все фотографии, включая находящиеся в сервисных альбомах, таких как "Фотографии на моей стене" (по умолчанию); 1 — вернуть фотографии только из стандартных альбомов пользователя или сообщества.
             "photo_sizes": 1,       //photo_sizes - 1 — будут возвращены размеры фотографий в специальном формате
             "skip_hidden": 1,       //skip_hidden - 1 — не возвращать фотографии, скрытые из блока над стеной пользователя (параметр учитывается только при owner_id > 0, параметр no_service_albums игнорируется).
             "v": "5.130"]
@@ -152,6 +156,40 @@ class NetworkService {
         }
     }
     
+    // MARK: - loadPhotosGet
+    static func loadPhotosGet(token: String, owner_id: String, completion: @escaping (_ photo: ResponsePhoto) -> ()) {
+        let baseURL = "https://api.vk.com"
+        let path = "/method/photos.get"
+        
+        let params: Parameters = [
+            "access_token": token,
+            "owner_id": owner_id,
+            "album_id": "profile", //wall — фотографии со стены, profile — фотографии профиля, saved — сохраненные фотографии
+            "rev": 1, //антихронологический порядок
+            "count": 5, //по умолчанию 50, максимальное значение 1000
+            "extended": 1, //будут возвращены дополнительные поля likes, comments, tags, can_comment, reposts
+            "v": "5.130"
+        ]
+        
+        NetworkService.sessionAF.request(baseURL + path, method: .get, parameters: params).responseData { (response) in
+            switch response.result {
+            case .success:
+                if let data = response.data {
+                    do {
+                        let photoResponse = try JSONDecoder().decode(ResponsePhoto.self, from: data)
+                        completion(photoResponse)
+                    }
+                    catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    // MARK: - loadPhotosSimple
 //    static func loadPhotosSimple(token: String, owner_id: String) {
 //        let baseURL = "https://api.vk.com"
 //        let path = "/method/photos.get"
@@ -171,6 +209,7 @@ class NetworkService {
 //        }
 //    }
     
+    // MARK: - searchGroupSimple
     static func searchGroupSimple(token: String, query: String) {
         let baseURL = "https://api.vk.com"
         let path = "/method/groups.search"
