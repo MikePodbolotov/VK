@@ -53,7 +53,7 @@ class City: Object, Codable {
     @objc dynamic var title: String = ""
 }
 
-//// MARK: - LastSeen
+// MARK: - LastSeen
 class LastSeen: Object, Codable {
     @objc dynamic var platform: Int = 0
     @objc dynamic var time: Int = 0
