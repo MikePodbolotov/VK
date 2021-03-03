@@ -164,10 +164,10 @@ class NetworkService {
         let params: Parameters = [
             "access_token": token,
             "owner_id": owner_id,
-            "album_id": "profile", //wall — фотографии со стены, profile — фотографии профиля, saved — сохраненные фотографии
-            "rev": 1, //антихронологический порядок
-            "count": 5, //по умолчанию 50, максимальное значение 1000
-            "extended": 1, //будут возвращены дополнительные поля likes, comments, tags, can_comment, reposts
+            "album_id": "profile",  //wall — фотографии со стены, profile — фотографии профиля, saved — сохраненные фотографии
+            "rev": 1,               //антихронологический порядок
+            "count": 5,             //по умолчанию 50, максимальное значение 1000
+            "extended": 1,          //будут возвращены дополнительные поля likes, comments, tags, can_comment, reposts
             "v": "5.130"
         ]
         

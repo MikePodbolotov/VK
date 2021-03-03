@@ -21,12 +21,17 @@ struct ItemGroup: Codable {
 
 // MARK: - Item
 class VKGroup: Object, Codable {
-    @objc dynamic var id: Int
-    @objc dynamic var name, screenName: String
-    @objc dynamic var isClosed: Int
-    @objc dynamic var type: String
-    @objc dynamic var isAdmin, isMember, isAdvertiser: Int
-    @objc dynamic var photo50, photo100, photo200: String
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String  = ""
+    @objc dynamic var screenName: String  = ""
+    @objc dynamic var isClosed: Int = 0
+    @objc dynamic var type: String  = ""
+    @objc dynamic var isAdmin: Int = 0
+    @objc dynamic var isMember: Int = 0
+    @objc dynamic var isAdvertiser: Int = 0
+    @objc dynamic var photo50: String = ""
+    @objc dynamic var photo100: String = ""
+    @objc dynamic var photo200: String = ""
 
     enum CodingKeys: String, CodingKey {
         case id, name

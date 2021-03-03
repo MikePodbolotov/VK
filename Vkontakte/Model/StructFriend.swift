@@ -21,12 +21,12 @@ struct ItemFriend: Codable {
 
 // MARK: - Item
 class VKFriend: Object, Codable {
-    @objc dynamic var firstName: String
-    @objc dynamic var id: Int
-    @objc dynamic var lastName: String
-    @objc dynamic var sex: Int
-    @objc dynamic var photo50: String
-    @objc dynamic var online: Int
+    @objc dynamic var firstName: String = ""
+    @objc dynamic var id: Int = 0
+    @objc dynamic var lastName: String = ""
+    @objc dynamic var sex: Int = 0
+    @objc dynamic var photo50: String = ""
+    @objc dynamic var online: Int = 0
     @objc dynamic var nickname: String?
     @objc dynamic var country: City?
     @objc dynamic var city: City?
@@ -49,12 +49,13 @@ class VKFriend: Object, Codable {
 
 // MARK: - City
 class City: Object, Codable {
-    @objc dynamic var id: Int
-    @objc dynamic var title: String
+    @objc dynamic var id: Int = 0
+    @objc dynamic var title: String = ""
 }
 
 //// MARK: - LastSeen
 class LastSeen: Object, Codable {
-    @objc dynamic var platform, time: Int
+    @objc dynamic var platform: Int = 0
+    @objc dynamic var time: Int = 0
 }
 

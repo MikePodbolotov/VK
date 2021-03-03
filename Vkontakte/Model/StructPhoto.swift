@@ -20,28 +20,31 @@ struct ItemPhoto: Codable {
 }
 
 // MARK: - Item
-struct VKPhoto: Codable {
-    let id, ownerID: Int
+class VKPhoto: Object, Codable {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var ownerID: Int = 0
+    @objc dynamic var likes: Likes?
+    @objc dynamic var text: String = ""
+    @objc dynamic var date: Int = 0
 //    let albumID, userID: Int
-    let likes: Likes
-    let sizes: [Size]
-    let text: String
-    let date: Int
+    
+    var sizes = List<Size>()
 
     enum CodingKeys: String, CodingKey {
         case id
         case ownerID = "owner_id"
         case likes
-//        case albumID = "album_id"
-//        case userID = "user_id"
         case sizes, text
         case date
+//        case albumID = "album_id"
+//        case userID = "user_id"
     }
 }
 
 // MARK: - Likes
-struct Likes: Codable {
-    let userLikes, count: Int
+class Likes: Object, Codable {
+    @objc dynamic var userLikes: Int = 0
+    @objc dynamic var count: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case userLikes = "user_likes"
@@ -50,8 +53,9 @@ struct Likes: Codable {
 }
 
 // MARK: - Size
-struct Size: Codable {
-    let type: String
-    let url: String
-    let width, height: Int
+class Size: Object, Codable {
+    @objc dynamic var type: String = ""
+    @objc dynamic var url: String = ""
+    @objc dynamic var width: Int = 0
+    @objc dynamic var height: Int = 0
 }

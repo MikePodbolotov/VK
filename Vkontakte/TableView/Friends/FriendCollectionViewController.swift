@@ -24,8 +24,9 @@ class FriendCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         NetworkService.loadPhotosGet(token: token, owner_id: String(friend.id)) { [weak self] (photoResponse) in
-            self?.photos = photoResponse.response.items
+            
             DispatchQueue.main.async {
+                self?.photos = photoResponse.response.items
                 self?.collectionView.reloadData()
             }
         }
