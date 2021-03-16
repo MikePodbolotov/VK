@@ -14,6 +14,8 @@ class RealmManager {
     
     private let realm: Realm
     
+    let phoneOnLine = true
+    
     private init?() {
         let configuration = Realm.Configuration(schemaVersion: 1, deleteRealmIfMigrationNeeded: true)
         guard let realm = try? Realm(configuration: configuration) else { return nil }

@@ -20,8 +20,6 @@ class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
         return groupsRealm?.sorted(byKeyPath: "name", ascending: true)
     }
     
-    private let phoneOnLine = true
-    
     private let networkManager = NetworkService.shared
     private let realmManager = RealmManager.shared
     
@@ -34,7 +32,7 @@ class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             
-        if phoneOnLine {
+        if realmManager!.phoneOnLine {
             NetworkService.loadGroups(token: token) { [weak self] (groupResponse) in
                 self?.groups = groupResponse.response.items
                 
@@ -98,7 +96,7 @@ class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            if phoneOnLine {
+            if realmManager!.phoneOnLine {
                 groups?.remove(at: indexPath.row)
                 filterGroups?.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)

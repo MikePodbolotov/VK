@@ -22,8 +22,6 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         return friendsRealm?.sorted(byKeyPath: "lastName", ascending: true)
     }
     
-    private let phoneOnLine = false
-    
     private let networkManager = NetworkService.shared
     private let realmManager = RealmManager.shared
     
@@ -37,7 +35,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if phoneOnLine {
+        if realmManager!.phoneOnLine {
             NetworkService.loadFriends(token: token) { [weak self] (friendResponse) in
                 self?.friends = friendResponse.response.items
                 
@@ -127,7 +125,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         // #warning Incomplete implementation, return the number of rows
         var tempArr = [VKFriend]()
         
-        if phoneOnLine {
+        if realmManager!.phoneOnLine {
             
             for friend in friends! {
                 if friend.lastName.prefix(1) == sections[section] {
@@ -153,7 +151,7 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? FriendsTableViewCell {
             var tempArr = [VKFriend]()
             
-            if phoneOnLine {
+            if realmManager!.phoneOnLine {
                 
                 guard friends != nil else { return UITableViewCell() }
                 for friend in friends! {
