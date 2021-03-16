@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -16,76 +17,82 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     var sections = [String]()
     var chosenFriend: VKFriend!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        tableView.delegate = self
-        tableView.dataSource = self
-
-//        guard friends != nil else { return }
-//        for friend in friends! {
-//            let char = friend.lastName.prefix(1)
-//            if sections.contains(String(char)) { continue }
-//            sections.append(String(char))
-//        }
-//        sections.sort(by: <)
-//        characterPicker.chars = sections
-//        characterPicker.setupUi()
+    private var friendsRealm: Results<VKFriend>? {
+        let friendsRealm: Results<VKFriend>? = realmManager?.getObjects()
+        return friendsRealm?.sorted(byKeyPath: "lastName", ascending: true)
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        NetworkService.loadFriends(token: token) { [weak self] (friendResponse) in
-//            self?.friends = friendResponse.response.items
-//        }
-//
-//        guard friends != nil else { return }
-//        for friend in friends! {
-//            let char = friend.lastName.prefix(1)
-//            if sections.contains(String(char)) { continue }
-//            sections.append(String(char))
-//        }
-//        sections.sort(by: <)
-//        tableView.reloadData()
-//    }
+    private let phoneOnLine = false
+    
+    private let networkManager = NetworkService.shared
+    private let realmManager = RealmManager.shared
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NetworkService.loadFriends(token: token) { [weak self] (friendResponse) in
-            self?.friends = friendResponse.response.items
-            
-            guard let friends = self?.friends else { return }
-            
-            for friend in friends {
-                let char = friend.lastName.prefix(1)
+        if phoneOnLine {
+            NetworkService.loadFriends(token: token) { [weak self] (friendResponse) in
+                self?.friends = friendResponse.response.items
                 
-                let boolValue = self?.sections.contains(String(char)) ?? false
-                if boolValue {
-                    continue
+                guard let friends = self?.friends else { return }
+                
+                DispatchQueue.main.async {
+                    try? self?.realmManager?.add(objects: friends)
+                    
+                    for friend in friends {
+                        let char = friend.lastName.prefix(1)
+                        
+                        let boolValue = self?.sections.contains(String(char)) ?? false
+                        if boolValue {
+                            continue
+                        }
+                        self?.sections.append(String(char))
+                    }
+                    self?.sections.sort(by: <)
+                    self?.characterPicker.chars = self?.sections ?? [""]
+                    self?.characterPicker.setupUi()
+
+                    self?.tableView.reloadData()
                 }
-                self?.sections.append(String(char))
             }
-            self?.sections.sort(by: <)
-            self?.characterPicker.chars = self?.sections ?? [""]
-            self?.characterPicker.setupUi()
+        } else {
+            guard let friends = friendsRealm else { return }
             
             DispatchQueue.main.async {
-                self?.tableView.reloadData()
+                for friend in friends {
+                    let char = friend.lastName.prefix(1)
+                    
+                    let boolValue = self.sections.contains(String(char))
+                    if boolValue {
+                        continue
+                    }
+                    self.sections.append(String(char))
+                }
+                self.sections.sort(by: <)
+                self.characterPicker.chars = self.sections
+                self.characterPicker.setupUi()
+                
+                self.tableView.reloadData()
             }
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "toFriend" {
-                if let destination = segue.destination as? FriendCollectionViewController {
-                    destination.friend = chosenFriend
-                }
-                else if segue.identifier == "toFriend" {
-                    
-                }
+        if segue.identifier == "toFriend" {
+            if let destination = segue.destination as? FriendCollectionViewController {
+                destination.friend = chosenFriend
             }
+            else if segue.identifier == "toFriend" {
+                
+            }
+        }
     }
 
     @IBAction func characterPicked(_ sender: CharacterPicker) {
@@ -119,10 +126,21 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         var tempArr = [VKFriend]()
-        for friend in friends! {
-            if friend.lastName.prefix(1) == sections[section] {
-                tempArr.append(friend)
+        
+        if phoneOnLine {
+            
+            for friend in friends! {
+                if friend.lastName.prefix(1) == sections[section] {
+                    tempArr.append(friend)
                 }
+            }
+        } else {
+            
+            for friend in friendsRealm! {
+                if friend.lastName.prefix(1) == sections[section] {
+                    tempArr.append(friend)
+                }
+            }
         }
         return tempArr.count
     }
@@ -134,22 +152,39 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? FriendsTableViewCell {
             var tempArr = [VKFriend]()
-            guard friends != nil else { return UITableViewCell() }
-            for friend in friends! {
-                if friend.lastName.prefix(1) == sections[indexPath.section] {
-                    tempArr.append(friend)
-                }
-            }
-            cell.friendLabel.text = "\(tempArr[indexPath.row].lastName) \(tempArr[indexPath.row].firstName)"
-            cell.friendStatusLabel.text = tempArr[indexPath.row].online == 0 ? "Offline" : "Online"
-            cell.frinedStatusImage.image = tempArr[indexPath.row].online == 0 ? UIImage(named: "scribble") : UIImage(named: "pencil")
-            cell.downLoadImage(from: tempArr[indexPath.row].photo50)
-            cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width / 2
-            cell.friendImage.layer.masksToBounds = true
             
+            if phoneOnLine {
+                
+                guard friends != nil else { return UITableViewCell() }
+                for friend in friends! {
+                    if friend.lastName.prefix(1) == sections[indexPath.section] {
+                        tempArr.append(friend)
+                    }
+                }
+                cell.friendLabel.text = "\(tempArr[indexPath.row].lastName) \(tempArr[indexPath.row].firstName)"
+                cell.friendStatusLabel.text = tempArr[indexPath.row].online == 0 ? "Offline" : "Online"
+                cell.frinedStatusImage.image = tempArr[indexPath.row].online == 0 ? UIImage(named: "scribble") : UIImage(named: "pencil")
+                cell.downLoadImage(from: tempArr[indexPath.row].photo50)
+                cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width / 2
+                cell.friendImage.layer.masksToBounds = true
+                
+            } else {
+                
+                guard friendsRealm != nil else { return UITableViewCell() }
+                for friend in friendsRealm! {
+                    if friend.lastName.prefix(1) == sections[indexPath.section] {
+                        tempArr.append(friend)
+                    }
+                }
+                cell.friendLabel.text = "\(tempArr[indexPath.row].lastName) \(tempArr[indexPath.row].firstName)"
+                cell.friendStatusLabel.text = "Offline"
+                cell.downLoadImage(from: tempArr[indexPath.row].photo50)
+                cell.friendImage.layer.cornerRadius = cell.friendImage.frame.width / 2
+                cell.friendImage.layer.masksToBounds = true
+            
+            }
             return cell
         }
-        
         return UITableViewCell()
     }
     

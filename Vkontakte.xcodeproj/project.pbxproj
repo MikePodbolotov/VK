@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B8E2F3CDC34AACE0ED1B295F /* Pods_Vkontakte.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF3F842E42EFFAFC947B9536 /* Pods_Vkontakte.framework */; };
 		C41BDC4225C9EAAB005984F2 /* СharacterPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41BDC4125C9EAAB005984F2 /* СharacterPicker.swift */; };
+		C41F843725F23498006925D5 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F843625F23498006925D5 /* RealmManager.swift */; };
 		C435516D2599254700C4EF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C435516C2599254700C4EF30 /* AppDelegate.swift */; };
 		C435516F2599254700C4EF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C435516E2599254700C4EF30 /* SceneDelegate.swift */; };
 		C43551742599254700C4EF30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C43551722599254700C4EF30 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		42A84CDE048C4E9330625F93 /* Pods-Vkontakte.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vkontakte.debug.xcconfig"; path = "Target Support Files/Pods-Vkontakte/Pods-Vkontakte.debug.xcconfig"; sourceTree = "<group>"; };
 		BF3F842E42EFFAFC947B9536 /* Pods_Vkontakte.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vkontakte.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41BDC4125C9EAAB005984F2 /* СharacterPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СharacterPicker.swift"; sourceTree = "<group>"; };
+		C41F843625F23498006925D5 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		C43551692599254700C4EF30 /* Vkontakte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vkontakte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C435516C2599254700C4EF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C435516E2599254700C4EF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			children = (
 				C4C716BA25C71A0400B78112 /* NetworkService.swift */,
 				C443D73925D5D80E00774062 /* Session.swift */,
+				C41F843625F23498006925D5 /* RealmManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				C449809025EC2281003EBF0A /* StructPhoto.swift in Sources */,
 				C443D73A25D5D80E00774062 /* Session.swift in Sources */,
 				C477B2EF25A3C27800366191 /* AllGroupsTableViewCell.swift in Sources */,
+				C41F843725F23498006925D5 /* RealmManager.swift in Sources */,
 				C496FBAF259F7A2A0008989C /* FriendCollectionViewController.swift in Sources */,
 				C4AE2E4825B47DA80035EC07 /* SettingsView.swift in Sources */,
 			);

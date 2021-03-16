@@ -32,6 +32,10 @@ class VKGroup: Object, Codable {
     @objc dynamic var photo50: String = ""
     @objc dynamic var photo100: String = ""
     @objc dynamic var photo200: String = ""
+    
+    override class func primaryKey() -> String? {
+        "id"
+    }
 
     enum CodingKeys: String, CodingKey {
         case id, name

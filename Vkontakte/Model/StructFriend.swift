@@ -45,6 +45,21 @@ class VKFriend: Object, Codable {
         case city, bdate
 //        case relation
     }
+    
+    // primaryKey - Свойства первичного ключа обеспечивают уникальность для каждого значения при каждом задании свойства
+    override class func primaryKey() -> String? {
+        "id"
+    }
+    
+    // ignoredProperties - указанные объекты не будут записываться в Realm
+    override class func ignoredProperties() -> [String] {
+        ["online", "lastSeen"]
+    }
+    
+    // indexedProperties - Возвращает массив имен свойств для свойств, которые должны быть проиндексированы.
+//    override class func indexedProperties() -> [String] {
+//        <#code#>
+//    }
 }
 
 // MARK: - City

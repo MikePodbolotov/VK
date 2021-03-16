@@ -10,6 +10,12 @@ import Alamofire
 
 class NetworkService {
     
+    static let shared = NetworkService()
+    
+    private init() {
+        
+    }
+    
     private static let session: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.allowsCellularAccess = false
@@ -25,12 +31,6 @@ class NetworkService {
         
         return session
     }()
-    
-        static let shared = NetworkService()
-    
-        private init() {
-    
-        }
     
     // MARK: - loadGroups
     static func loadGroups(token: String, completion: @escaping (_ group: ResponseGroup) -> ()) {

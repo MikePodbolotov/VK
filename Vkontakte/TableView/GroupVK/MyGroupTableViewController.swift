@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
 
@@ -14,35 +15,51 @@ class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
     var groups: [VKGroup]?
     var filterGroups: [VKGroup]?
     
+    private var groupsRealm: Results<VKGroup>? {
+        let groupsRealm: Results<VKGroup>? = realmManager?.getObjects()
+        return groupsRealm?.sorted(byKeyPath: "name", ascending: true)
+    }
+    
+    private let phoneOnLine = true
+    
+    private let networkManager = NetworkService.shared
+    private let realmManager = RealmManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         searchBar.delegate = self
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        NetworkService.loadGroups(token: token) { (groupResponse) in
-//            self.groups = groupResponse.response.items
-//        }
-//        filterGroups = groups
-//        tableView.reloadData()
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             
+        if phoneOnLine {
             NetworkService.loadGroups(token: token) { [weak self] (groupResponse) in
                 self?.groups = groupResponse.response.items
+                
+                guard let groups = self?.groups else { return }
                 
                 self?.filterGroups = self?.groups
                 
                 DispatchQueue.main.async {
+                    try? self?.realmManager?.add(objects: groups)
                     self?.tableView.reloadData()
                 }
             }
+        } else {
+            guard groupsRealm != nil || groupsRealm?.count ?? 0 > 0 else { return }
+            var tempArr = [VKGroup]()
+            for group in groupsRealm! {
+                tempArr.append(group)
+            }
+            self.filterGroups = tempArr
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
+    }
 
     // MARK: - Table view data source
 //    override func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,12 +98,18 @@ class MyGroupTableViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            groups?.remove(at: indexPath.row)
-            filterGroups?.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            if phoneOnLine {
+                groups?.remove(at: indexPath.row)
+                filterGroups?.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } else {
+                try? realmManager?.delete(object: (filterGroups?[indexPath.row])!)
+                filterGroups?.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
 
     @IBAction func unwindFromTableViewController (_ segue: UIStoryboardSegue) {
